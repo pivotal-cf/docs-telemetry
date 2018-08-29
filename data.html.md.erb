@@ -1,0 +1,146 @@
+---
+title: Data Transmission, Storage and Security
+owner: Telemetry
+---
+
+## <a id="collected"></a>Data collected
+
+The Collector collects data about how your product portfolio is
+configured and maintained. It does not collect any personal data or
+information related to an identified or identifiable natural person; for
+example, it does not collect Ops Manager’s free text fields such as
+passwords, private keys or other authentication-type tools. Note that we
+collect configuration information for all products installed across the
+portfolio, which may include the below information for partner tiles as
+well.
+
+The Collector connects to Ops Manager on any PCF foundation for which it
+is provided valid credentials and collects the following data in a
+compressed archive on the local filesystem:
+
+<table class "nice">
+  <tr>
+    <th><strong>API Endpoint</th>
+    <th>Data Collected</th>
+    <th>More Information</th>
+  </tr>
+
+  <tr>
+    <td><code>/api/v0/diagnostic_report</code></td>
+    <td>
+      <ul>
+        <li>Ops Manager version</li>
+        <li>BOSH stemcell</li>
+        <li>IaaS type</li>
+        <li>Deployed and staged products, versions, and stemcells</li>
+        <li>BOSH director configuration details</li>
+        <li>BOSH releases</li>
+      </ul>
+    </td>
+    <td><a href="http://docs.pivotal.io/pivotalcf/2-1/opsman-api/#diagnostic-report">Documentation</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>/api/v0/staged/products/:product_guid/properties</code></td>
+    <td><ul><li>Custom configurations for every installed product</li></ul></td>
+    <td><a href="http://docs.pivotal.io/pivotalcf/2-1/opsman-api/#viewing-product-properties">Documentation</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>/api/v0/staged/products/:product_guid/</code>
+    
+    </td>
+  <td>
+    <ul>
+      <li>Resources</li>
+      <li>List of the compute and disk configurations for all jobs on the installed products</li>
+  <td><a href="http://docs.pivotal.io/pivotalcf/2-1/opsman-api/#retrieving-resource-configuration-for-a-product">Documentation</a>
+  </td>
+  </tr>
+
+  <tr>
+    <td><code>/api/v0/vm_types</code></td>
+    <td>
+      <ul>
+        <li>Details about vm types used on the customers IaaS, including:</li>
+            <ul>
+              <li>Name</li>
+              <li>RAM</li>
+              <li>CPU</li>
+              <li>Ephemeral disk</li>
+              <li>Built in (true/false)</li>
+            </ul>
+      </ul>
+    </td>
+    <td><a href="http://docs.pivotal.io/pivotalcf/2-1/opsman-api/#vm-types">Documentation</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>/api/v0/deployed/products</code></td>
+    <td>
+      <ul>
+        <li>List of all deployed tiles, including:</li>
+        <ul>
+          <li>Name</li>
+          <li>Version</li>
+          <li>Product guid</li>
+        </ul>
+      </ul>
+    </td>
+  <td><a href="http://docs.pivotal.io/pivotalcf/2-1/opsman-api/#deployed-products">Documentation</a>
+  </td>
+  </tr>
+
+  <tr>
+    <td><code>/api/v0/installations</code></td>
+    <td><a href="http://docs.pivotal.io/pivotalcf/2-1/opsman-api/#getting-a-list-of-recent-install-events">Documentation</a>
+    </td>
+    <td>
+      <ul>
+        <li>History of events when a user changed a tile (i.e. each time the “Apply Changes” button was clicked in the GUI or the installations controller was triggered via the API), including:</li>
+        <ul>
+          <li>Change type (e.g. - “upgrade”)</li>
+          <li>Start time</li>
+          <li>End time</li>
+          <li>Change status</li>
+        </ul>
+        <li> Username is redacted</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+In addition to the Ops Manager data listed above, the Collector provides
+the following custom metadata:
+
+  - **Environment type**- this is input by the CLI user; options
+    include production, pre-production, development, and qa.
+  - **List of files collected** - the list of the files created by the
+    `collect` command
+  - **Data collection timestamp** - the date at which the data was
+    collected
+  - **Collector tool version** - the version of the Collector used to
+    collect data 
+
+This data is stored in the `metadata` file.
+
+## <a id="transmission"></a>Transmission
+
+After the Collector collects files containing data, it transmits these
+files to Pivotal and is stored securely. 
+
+## <a id="security"></a>Security
+
+  - The Collector uses HTTPS connections to communicate with an Ops
+    Manager
+  - The Collector transmits data using user-specific credentials to make
+    an authenticated HTTPS request to Pivotal
+  - All credentials can be passed as environment variables, reducing the
+    chance of leakage
+
+## <a id="storage"></a>Storage
+
+Data is stored in Google Cloud Platform (GCP).

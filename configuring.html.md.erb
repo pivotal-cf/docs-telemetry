@@ -1,0 +1,133 @@
+---
+title: Configuring Telemetry Collector for PCF
+owner: Telemetry
+---
+You will need to configure parameters to collect and send data for all
+installation options.
+
+## <a id="collect"></a>Collect
+
+<table class="nice">
+
+    <th>Flag</th>
+    <th>Environment Variable</th>
+    <th>Meaning</td>
+    
+    <tr>
+      <td><code>client-id</code>
+        <p><em>string</em></p></td>
+      <td><code>$OPS_MANAGER_CLIENT_ID</code></td>
+      <td>
+        <ul>
+          <li>Ops Manager client ID</li>
+          <li>Not required if using username/password authentication</li>
+        </ul>
+      </td>
+    </tr>
+    
+    <tr >
+      <td><code>client-secret</code>
+        <p><em>string</em></p></td>
+        <td><code>$OPS_MANAGER_CLIENT_SECRET</code></td>
+        <td>
+          <ul>
+            <li>Ops Manager client secret</li>
+            <li>Not required if using username/password authentication</li>
+          </ul>
+        </td>
+    </tr>
+    
+    <tr>
+      <td><code>env-type</code>
+        <p><em>string</em></p></td>
+      <td><code>$ENV_TYPE</code></td>
+      <td>
+        <ul>
+          <li> Describe the type of environment you're collecting from </li>
+          <li>Valid options: development, qa, pre-production, production</li>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>insecure-skip-tls-verify</code></td>
+      <td></td>
+      <td><ul><li>Skip TLS validation on http requests to Ops Manager</li></ul></td>
+    </tr>
+    
+    <tr>
+      <td><code>ops-manager-timeout</code>
+        <p><em>int</em></p></td>
+      <td></td>
+      <td><ul><li>Timeout (in seconds) for Ops Manager HTTP requests (default 30)</li></ul></td>
+    </tr>
+    
+    <tr>
+      <td><code>output-dir</code>
+        <p><em>string</em></p></td>
+      <td><code>$OUTPUT_DIR</code></td>
+      <td><ul><li>Local directory to write collected data</li></ul></td>
+    </tr>
+    
+    <tr>
+      <td><code>password</code>
+        <p><em>string</em></p></td>
+      <td><code>$OPS_MANAGER_PASSWORD</code></td>
+      <td>
+        <ul>
+          <li>Ops Manager password</li>
+          <li>Not required if using client/secret authentication</li>
+        </ul>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>url</code>
+        <p><em>string</em></p></td>
+      <td><code>$OPS_MANAGER_URL</code></td>
+      <td><ul><li>Ops Manager URL to collect data from</li></ul></td>
+    </tr>
+    
+    <tr>
+      <td><code>username</code>
+        <p><em>string</em></p></td>
+      <td><code>$OPS_MANAGER_USERNAME</code></td>
+      <td>
+        <ul>
+          <li>Ops Manager username</li>
+          <li>Not required if using client/secret authentication</li>
+        </ul>
+      </td>
+    </tr>
+
+</table>
+
+## <a id="send"></a>Send
+
+<table class="nice">
+
+<th>Flag</th>
+<th>Environment Variable</th>
+<th>Meaning</th>
+
+<tr>
+  <td><code>api-key</code>
+    <p><em>string</em></p></td>
+  <td><code>$API_KEY</code></td>
+  <td>
+    <ul>
+      <li>Pivotal Telemetry API Key used to authenticate with Pivotal</li>
+      <li>This is provided to customers by Pivotal</li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+<td><code>path</code>
+  <p><em>string</em></p></td>
+<td></td>
+<td>
+  <ul><li>Tar archive containing unmodified data from 'collect' command</li></ul>
+</td>
+</tr>
+
+</table>

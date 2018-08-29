@@ -1,0 +1,122 @@
+---
+title: Installing Telemetry Collector for PCF
+owner: Telemetry
+---
+
+This topic explains how to install Pivotal Telemetry Collector using Concourse or manually.
+
+Pivotal recommends installing the Pivotal Telemetry Collector with Concourse. If you do not have Concourse deployed
+within your environment, you can set up Pivotal Telemetry Collector using a `cron` job
+or run it manually from the command line. 
+
+You can download the Pivotal Telemetry Collector binary and a set of YAML files for collection automation in Concourse from [Pivotal Network](https://network.pivotal.io/).
+
+Perform one of the following sets of procedures to install
+Pivotal Telemetry Collector. You can then configure it by following the procedures in
+[Configuring Pivotal Telemetry Collector](./configuring.html).
+
+### <a id="concourse"></a>Install with Concourse
+
+1.  Ensure you have a compatible
+    Docker image resource available to execute the CLI binary. There are
+    compatible binaries for 64-bit Linux, MacOS/darwin, and Windows.
+1.  Download the CLI binary that is appropriate for your docker image
+    and the two YAML task files from [Pivotal Network](https://network.pivotal.io/). The two
+    YAML files define tasks for collecting and sending data,
+    respectively.
+1.  Make the CLI binary and YAML task files available to your pipeline,
+    e.g. using an s3 or git resource.
+1.  Add & configure a new task into your pipeline using the template
+    concourse task configuration below as a guide. View the
+    documentation on configuration for more information on the “Collect”
+    and “Send” commands.
+1.  Change the timer-trigger resource if you would like to trigger the
+    collection and sending differently.
+
+  ```
+  resources:  
+  #resource where the task files are stored. E.g. git or s3  
+  - name: pivotal-telemetry-tasks  
+  ...  
+  #resource where CLI binary is stored. E.g. s3  
+  - name: collector-binary  
+  ...  
+  #resource of docker image with which to execute binary  
+  - name: execution-image  
+  ...  
+  #resource to trigger collect and send on a weekly cadence.  
+  - name: timer-trigger  
+  type: time  
+  source:  
+  interval: 168h # 1 week  
+    
+  jobs:  
+  - name: collect-and-send-data  
+  plan:  
+  - get: timer-trigger  
+  trigger: true  
+  - get: collector-binary  
+  - get: pivotal-telemetry-tasks  
+  - task: collect-with-user-creds  
+  image: execution-image  
+  file: pivotal-telemetry-tasks/collect.yml  
+  params:  
+  OPS_MANAGER_URL: {{your-ops-manager-url}}  
+  OPS_MANAGER_USERNAME: {{your-ops-manager-username}}  
+  OPS_MANAGER_PASSWORD: {{your-ops-manager-password}}  
+  ENV_TYPE: {{your-env-type}}  
+  - task: send  
+  image: execution-image  
+  file: pivotal-telemetry-tasks/send.yml  
+  params:  
+  API_KEY: {{pivotal-provided-api-key}}  
+  ```
+
+### <a id="manual"></a>Install Manually 
+
+To install the CLI to run manually, complete the following steps:
+
+1.  Download the appropriate CLI binary for your operating system from
+    [Pivotal Network](https://network.pivotal.io/).
+2.  Add the binary to your $PATH.
+3.  To verify your installation, open a terminal window and type
+    `telemetry-collector`. If your installation was successful, the
+    Pivotal Telemetry Collector CLI help listing appears.
+4.  Run the `collect` command by replacing the brackets in the
+    following command with your own information. See more information on
+    what each of the flags mean in the [Configuration](./configuring.html)
+    section
+below.
+
+  ```
+  telemetry-collector collect --output-dir \[my/file/path\] --url \[MyOpsManUrl.com\] --username \[MyOpsManUsername\] --password \[MyOpsManPassword\] --env-type \[production, pre-production, qa,development\] --client-id \[MyOpsManClientID\] --client-secret \[MyOpsManClientSecret\] 
+  ```
+If you’ve successfully run the command, you should see a string of
+messages in your terminal window:
+
+  ```
+  Collecting data from Operations Manager at https://MyOpsManUrl.com/
+  Wrote output to my/file/path/FoundationDetails_#######.tar
+  Success!
+  ```
+
+  You can then examine the files collected from the FoundationDetails tar
+file. Note: you will need to send the original, unmodified tar file for
+the data collection to work without producing errors.
+
+1.  Run the `send` command by replacing the brackets in the following
+    command with your own information. See more information on what each
+    of the flags are in the [*Configuration*](./configuring.html) section
+    below.  
+```
+telemetry-collector send --path \[path/to/tar/archive\] --api-key \[MyPivotalTelemetryAPIKey\]
+```
+
+  If you’ve successfully run the command, you should see a string of
+messages in your terminal window:
+
+  ```
+  Sending my/file/path/FoundationDetails_#######.tar to Pivotal at
+  [https://telemetry.pivotal.io](https://telemetry.pivotal.io/load)
+  Success!
+  ```
