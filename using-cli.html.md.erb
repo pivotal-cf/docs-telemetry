@@ -23,8 +23,7 @@ To install Pivotal Telemetry Collector manually, complete the following steps:
 1.  Add the binary to your `$PATH`.
 1.  Open a terminal window and enter
     `telemetry-collector` to verify your installation. If your installation 
-    succeeded, the
-    command returns help information.
+    succeeds, the command returns help commands.
 
 ## <a id="cli"></a>Using Pivotal Telemetry Collector CLI
 
@@ -68,7 +67,7 @@ Wrote output to MY-FILE-PATH/FoundationDetails_#######.tar
 Success!</pre>
 
 After running the command, you can examine the data collected in the 
-`FoundationDetails.tar` file. 
+`FoundationDetails_######.tar` file. 
 
 ### <a id="send"></a> Send 
 
@@ -80,8 +79,8 @@ telemetry-collector send --path PATH-TO-TAR-ARCHIVE \
 ```
 Where:
 
-* `PATH-TO-TAR-ARCHIVE` is the path to the `FoundationDetails.tar` file written 
-by the `collect` command.
+* `PATH-TO-TAR-ARCHIVE` is the path to the `FoundationDetails_######.tar` file 
+written by the `collect` command.
 * `PIVOTAL-TELEMETRY-API-KEY` is the key used to authenticate with the Pivotal 
 Telemetry API.
 

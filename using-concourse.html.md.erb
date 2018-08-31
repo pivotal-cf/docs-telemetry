@@ -7,10 +7,8 @@ This topic explains how to use Pivotal Telemetry Collector
 with Concourse.
 
 Pivotal recommends installing the Pivotal Telemetry Collector with Concourse. 
-If you do not have Concourse deployed
-within your environment, you can set up Pivotal Telemetry Collector using a 
-`cron` job
-or run it manually from the command line. 
+If you do not have Concourse deployed within your environment, you can run it 
+manually from the command line. 
 
 For more information about manually installing Pivotal Telemetry Collector, see 
 [Using the Telemetry Collector for PCF CLI ](../using-cli.html).
@@ -42,10 +40,8 @@ in the Concourse CI documentation.
 ## <a id="configure"></a>Configure with Concourse
 
 1.  Configure a new task into your pipeline using the template
-    concourse task configuration below as a guide. View the
-    documentation on configuration for more information on the “Collect”
-    and “Send” commands.
-    
+    concourse task configuration below as a guide. 
+      
   ```
   resources:  
   #resource where the task files are stored. E.g. git or s3  
@@ -85,7 +81,8 @@ in the Concourse CI documentation.
   API_KEY: {{pivotal-provided-api-key}}  
   ```
   
-  1.  Change the timer-trigger resource if you would like to trigger the
-      collection and sending differently.
-      
-  [Mention that it works when it is deployed?]
+  1.  (optional) Edit the timer-trigger resource to change the interval between 
+  data collection.
+
+<!--- Make this less vague. --->      
+Your Concourse pipeline will turn green when the build is successful.
