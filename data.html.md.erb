@@ -8,25 +8,24 @@ secures collected data.
 
 ## <a id="overview"></a>Overview
 
-Pivotal Telemetry Collector collects data about the configuration and maintenance
-of your foundation from the Pivotal Cloud Foundry (PCF) Ops Manager API.
-
-Pivotal Telemetry Collector does not collect any personal data or
+Pivotal Telemetry Collector collects technical product usage data
+about your foundation. Pivotal Telemetry Collector 
+does not collect any personal data or
 information related to an identified or identifiable natural person. 
 For example, it does not collect data on
 passwords, private keys, or other authentication-type tools. 
 
 <p class="note"><strong>Note:</strong> Pivotal Telemetry Collector
-collects configuration information for all products installed in a
-foundation. This may include partner tile information as
+collects product usage data for all services installed in a
+foundation. This may include partner tile data as
 well.</p>
 
 ## <a id="security"></a>Security Measures
 
-Pivotal Telemetry Collector connects to Ops Manager on any PCF foundation that 
-has provided valid credentials. After Pivotal Telemetry Collector collects data, 
-it transmits the data to Pivotal. The data is stored securely in Google Cloud 
-Platform (GCP).
+Pivotal Telemetry Collector connects to Ops Manager on any Pivotal Cloud Foundry 
+(PCF) foundation that has provided valid credentials. After Pivotal Telemetry 
+Collector collects data, it transmits the data to Pivotal. The data is stored 
+securely in Google Cloud Platform (GCP).
 
 Pivotal Telemetry Collector secures data during transmission using the following 
 measures:
@@ -37,8 +36,8 @@ measures:
 
 ## <a id="collected"></a>Data Collected
 
-Pivotal Telemetry Collector collects data in a `FoundationDetails_######.tar` file 
-on your local filesystem. The `FoundationDetails_######.tar` contains the 
+Pivotal Telemetry Collector collects data in a `FoundationDetails_######.tar` 
+file on your local filesystem. The `FoundationDetails_######.tar` contains the 
 following data:
 
 <table class "nice">
