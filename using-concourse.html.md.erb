@@ -41,51 +41,46 @@ in the Concourse CI documentation.
 
 1.  Configure a new task into your pipeline using the template
     Concourse task configuration below as a guide. 
-
-<!-- These files will probably be provided. Edits would be in a cred file? -->
+    ```
+    resources:  
+    #resource where the task files are stored. E.g. git or s3  
+    - name: pivotal-telemetry-tasks  
+    ...  
+    #resource where CLI binary is stored. E.g. s3  
+    - name: collector-binary  
+    ...  
+    #resource of docker image with which to execute binary  
+    - name: execution-image  
+    ...  
+    #resource to trigger collect and send on a weekly cadence.  
+    - name: timer-trigger  
+    type: time  
+    source:  
+    interval: 168h # 1 week  
       
-  ```
-  resources:  
-  #resource where the task files are stored. E.g. git or s3  
-  - name: pivotal-telemetry-tasks  
-  ...  
-  #resource where CLI binary is stored. E.g. s3  
-  - name: collector-binary  
-  ...  
-  #resource of docker image with which to execute binary  
-  - name: execution-image  
-  ...  
-  #resource to trigger collect and send on a weekly cadence.  
-  - name: timer-trigger  
-  type: time  
-  source:  
-  interval: 168h # 1 week  
+    jobs:  
+    - name: collect-and-send-data  
+    plan:  
+    - get: timer-trigger  
+    trigger: true  
+    - get: collector-binary  
+    - get: pivotal-telemetry-tasks  
+    - task: collect-with-user-creds  
+    image: execution-image  
+    file: pivotal-telemetry-tasks/collect.yml  
+    params:  
+    OPS_MANAGER_URL: {{your-ops-manager-url}}  
+    OPS_MANAGER_USERNAME: {{your-ops-manager-username}}  
+    OPS_MANAGER_PASSWORD: {{your-ops-manager-password}}  
+    ENV_TYPE: {{your-env-type}}  
+    - task: send  
+    image: execution-image  
+    file: pivotal-telemetry-tasks/send.yml  
+    params:  
+    API_KEY: {{pivotal-provided-api-key}}  
+    ```
     
-  jobs:  
-  - name: collect-and-send-data  
-  plan:  
-  - get: timer-trigger  
-  trigger: true  
-  - get: collector-binary  
-  - get: pivotal-telemetry-tasks  
-  - task: collect-with-user-creds  
-  image: execution-image  
-  file: pivotal-telemetry-tasks/collect.yml  
-  params:  
-  OPS_MANAGER_URL: {{your-ops-manager-url}}  
-  OPS_MANAGER_USERNAME: {{your-ops-manager-username}}  
-  OPS_MANAGER_PASSWORD: {{your-ops-manager-password}}  
-  ENV_TYPE: {{your-env-type}}  
-  - task: send  
-  image: execution-image  
-  file: pivotal-telemetry-tasks/send.yml  
-  params:  
-  API_KEY: {{pivotal-provided-api-key}}  
-  ```
-  
-  1. (Optional) Edit the timer-trigger resource to change the interval between 
+1. (Optional) Edit the timer-trigger resource to change the interval between 
   data collection. 
   
-<!-- Should there be an extra step about pushing/deploying Concourse pipeline? -->
-  
-  1. Confirm your Concourse pipeline build is successful.
+1. Confirm your Concourse pipeline build is successful.
