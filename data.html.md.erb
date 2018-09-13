@@ -16,7 +16,7 @@ For example, it does not collect data on
 passwords, private keys, or other authentication-type tools. 
 
 <p class="note"><strong>Note:</strong> Pivotal Telemetry Collector
-collects product usage data for all services installed in a
+collects configuration data for all services installed on a
 foundation. This may include partner tile data as
 well.</p>
 
@@ -32,7 +32,6 @@ measures:
 
   - HTTPS connections when communicating with Ops Manager
   - User-specific credentials to authenticate HTTPS requests to Pivotal
-  - Environment variables for credentials to reduce the chance of leakage
 
 ## <a id="collected"></a>Data Collected
 
@@ -145,7 +144,7 @@ following data:
 Pivotal Telemetry Collector also provides a `metadata` file with the 
 following data:
 
-  - **Environment type** - the environment used when collecting data with the CLI
+  - **Environment type** - the environment used when collecting data with the CLI (production, pre-production, development, QA); this is input by the CLI user
   - **List of files collected** - the list of the files created by the
     `collect` command
   - **Data collection timestamp** - the date at which the data was
