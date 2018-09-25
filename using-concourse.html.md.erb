@@ -1,0 +1,84 @@
+---
+title: Using Pivotal Telemetry Collector with Concourse
+owner: Telemetry
+---
+
+This topic explains how to use Pivotal Telemetry Collector 
+with Concourse.
+
+Pivotal recommends installing the Pivotal Telemetry Collector with Concourse. 
+If you do not have Concourse deployed within your environment, you can run it 
+manually from the command line. 
+
+For more information about manually installing Pivotal Telemetry Collector, see 
+[Using the Telemetry Collector for PCF CLI ](./using-cli.html).
+
+## <a id="prerequisites"></a>Prerequisites
+
+To complete the steps in this section, you must have the following:
+
+- A Docker image resource than can run a CLI binary. The image must be compatible 
+with Linux, MacOS/darwin, or Windows.
+- The CLI binary for Pivotal Telemetry Collector that corresponds to your Docker 
+image OS. You can download the binary from 
+[Pivotal Network](https://network.pivotal.io/). 
+- The YAML task files for Pivotal Telemetry Collector from 
+[Pivotal Network](https://network.pivotal.io/). These task files are for 
+collecting and sending data
+
+## <a id="install"></a>Install with Concourse
+
+To install the CLI with Concourse, complete the following steps:
+
+1. Store the CLI binary and YAML tasks files using a resource that Concourse 
+can access. Pivotal recommends using a s3 bucket or a git repository to store 
+the CLI binary. For more information, see 
+[Resources Provided with Concourse](https://concourse-ci.org/included-resources.html) 
+in the Concourse CI documentation.
+1. Add the task files to your pipeline.
+
+## <a id="configure"></a>Configure with Concourse
+
+1. Configure a new task into your pipeline using the Concourse task configuration template below as a guide.
+
+    ```
+    resources:
+    #resource where the task files are stored. E.g. git or s3
+    - name: pivotal-telemetry-tasks
+    ...
+    #resource where CLI binary is stored. E.g. s3
+    - name: collector-binary
+    ...
+    #resource of docker image with which to execute binary
+    - name: execution-image
+    ...
+    #resource to trigger collect and send on a weekly cadence.
+    - name: timer-trigger
+    type: time
+    source:
+    interval: 168h # 1 week
+    
+    jobs:
+    - name: collect-and-send-data
+    plan:
+    - get: timer-trigger
+    trigger: true
+    - get: collector-binary
+    - get: pivotal-telemetry-tasks
+    - task: collect-with-user-creds
+    image: execution-image
+    file: pivotal-telemetry-tasks/collect.yml
+    params:
+    OPS_MANAGER_URL: {{your-ops-manager-url}}
+    OPS_MANAGER_USERNAME: {{your-ops-manager-username}}
+    OPS_MANAGER_PASSWORD: {{your-ops-manager-password}}
+    ENV_TYPE: {{your-env-type}}
+    - task: send
+    image: execution-image
+    file: pivotal-telemetry-tasks/send.yml
+    params:
+    API_KEY: {{pivotal-provided-api-key}}
+    ```
+1. (Optional) Edit the timer-trigger resource to change the interval between data collection.
+
+1. Confirm your Concourse pipeline build is successful.

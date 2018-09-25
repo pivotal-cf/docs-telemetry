@@ -1,0 +1,173 @@
+---
+title: Configuration Reference
+owner: Telemetry
+---
+
+This topic lists the parameters that are used to collect and send data with 
+Pivotal Telemetry Collector.
+
+## <a id="collect"></a>Collect
+
+To collect data with Pivotal Telemetry Collector you configure the following 
+parameters:
+
+<table class="nice">
+
+    <th>Flag</th>
+    <th>Environment Variable</th>
+    <th>Description</th>
+    
+    <tr>
+      <td><code>output-dir</code></td>
+      <td>
+        <code>$OUTPUT_DIR</code>
+      </td><td>
+        <ul>
+          <li>string</li>
+          <li>Local directory where the command writes the output <code>tar</code> 
+          file</li></ul></td>
+    </tr>
+    
+    <tr>
+      <td><code>url</code></td>
+      <td>
+        <code>$OPS_MANAGER_URL</code>
+      </td><td>
+        <ul>
+          <li>string</li>
+          <li>Ops Manager URL where the command collects data from.</li>
+        </ul>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>username</code></td>
+      <td>
+        <code>$OPS_MANAGER_USERNAME</code>
+      </td><td>
+        <ul>
+          <li>string</li>
+          <li>Ops Manager username</li>
+          <li>Not required if you are using client authentication</li>
+        </ul>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>password</code></td>
+      <td>
+        <code>$OPS_MANAGER_PASSWORD</code>
+      </td><td>
+        <ul>
+          <li>string</li>
+          <li>Ops Manager password</li>
+          <li>Not required if you are using client authentication</li>
+        </ul>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>client-id</code></td>
+      <td>
+        <code>$OPS_MANAGER_CLIENT_ID</code>
+      </td><td>
+        <ul>
+          <li>string</li>
+          <li>Ops Manager client ID</li>
+          <li>Not required if you are using the <code>username</code> and 
+          <code>password</code> parameters for authentication</li>
+        </ul>
+      </td>
+    </tr>
+    
+    <tr >
+      <td><code>client-secret</code></td>
+        <td>
+          <code>$OPS_MANAGER_CLIENT_SECRET</code>
+        </td><td>
+          <ul>
+            <li>string</li>
+            <li>Ops Manager client secret</li>
+            <li>Not required if you are using the <code>username</code> and 
+            <code>password</code> for authentication</li>
+          </ul>
+        </td>
+    </tr>
+    
+    <tr>
+      <td><code>env-type</code></td>
+      <td>
+        <code>$ENV_TYPE</code>
+      </td><td>
+        <ul>
+          <li>string</li>
+          <li>The type of environment you are using to collect data</li>
+          <li>You can enter one the following options:
+            <ul>
+              <li>development</li>
+              <li>qa</li> 
+              <li>pre-production</li> 
+              <li>production</li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>insecure-skip-tls-verify</code></td>
+      <td>(none)</td>
+      <td>
+        <ul>
+        <li>Skips TLS validation on HTTP requests to Ops Manager</li>
+        </ul>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>ops-manager-timeout</code></td>
+      <td>(none)</td>
+      <td>
+        <ul>
+          <li>integer</li>
+          <li>Timeout in seconds for Ops Manager HTTP requests</li>
+          <li>Defaults to 30 seconds</li>
+          <li>Optional</li>
+          </ul></td>
+    </tr>
+        
+</table>
+
+## <a id="send"></a>Send
+
+To send data with Pivotal Telemetry Collector you configure the following 
+parameters:
+
+<table class="nice">
+
+<th>Flag</th>
+<th>Meaning</th>
+
+<tr>
+<td><code>path</code></td>
+<td>
+  <ul>
+    <li>string</li>
+    <li>Path to the <code>FoundationDetails_#######.tar</code> file written by the 
+    <code>collect</code> command</li></ul>
+</td>
+</tr>
+
+<tr>
+  <td><code>api-key</code></td>
+  <td>
+    <ul>
+      <li><code>$API_KEY</code></li>
+      <li>string</li>
+      <li>Key used to authenticate with the Pivotal Telemetry API</li>
+      <li>Provided to customers by Pivotal</li>
+    </ul>
+  </td>
+</tr>
+
+</table>

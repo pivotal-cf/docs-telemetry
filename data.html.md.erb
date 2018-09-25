@@ -1,0 +1,153 @@
+---
+title: Data Security
+owner: Telemetry
+---
+
+This topic describes how Pivotal Telemetry Collector transmits, stores, and 
+secures collected data.
+
+## <a id="overview"></a>Overview
+
+Pivotal Telemetry Collector collects technical product usage data
+about your foundation. Pivotal Telemetry Collector 
+does not collect any personal data or
+information related to an identified or identifiable natural person. 
+For example, it does not collect data on
+passwords, private keys, or other authentication-type tools. 
+
+<p class="note"><strong>Note:</strong> Pivotal Telemetry Collector
+collects configuration data for all services installed on a
+foundation. This may include partner tile data as
+well.</p>
+
+## <a id="security"></a>Security Measures
+
+Pivotal Telemetry Collector connects to Ops Manager on any Pivotal Cloud Foundry 
+(PCF) foundation that has provided valid credentials. After Pivotal Telemetry 
+Collector collects data, it transmits the data to Pivotal. The data is stored 
+securely in Google Cloud Platform (GCP).
+
+Pivotal Telemetry Collector secures data during transmission using the following 
+measures:
+
+  - HTTPS connections when communicating with Ops Manager
+  - User-specific credentials to authenticate HTTPS requests to Pivotal
+
+## <a id="collected"></a>Data Collected
+
+Pivotal Telemetry Collector collects data in a `FoundationDetails_######.tar` 
+file on your local filesystem. The `FoundationDetails_######.tar` contains the 
+following data:
+
+<table class "nice">
+  <tr>
+    <th><strong>API Endpoint</th>
+    <th>Data Collected</th>
+  </tr>
+
+  <tr>
+    <td><code>/api/v0/diagnostic_report</code></td>
+    <td>
+      <ul>
+        <li>Ops Manager version</li>
+        <li>BOSH stemcell</li>
+        <li>IaaS type</li>
+        <li>Deployed and staged products, versions, and stemcells</li>
+        <li>BOSH director configuration details</li>
+        <li>BOSH releases</li>
+        <li><a href="http://docs.pivotal.io/pivotalcf/2-1/opsman-api/#diagnostic-report">
+        Documentation</a>
+        </li>
+      </ul>
+    </td>  
+  </tr>
+
+  <tr>
+    <td><code>/api/v0/staged/products/:product_guid/properties</code></td>
+    <td>
+      <ul>
+        <li>Custom configurations for every installed product</li>
+        <li><a href="http://docs.pivotal.io/pivotalcf/2-1/opsman-api/#viewing-product-properties">
+        Documentation</a></li>
+      </ul>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>/api/v0/staged/products/:product_guid/resources</code></td>
+  <td>
+    <ul>
+      <li>Resources</li>
+      <li>List of the compute and disk configurations for all jobs on the 
+      installed products</li>
+      <li><a href="http://docs.pivotal.io/pivotalcf/2-1/opsman-api/#retrieving-resource-configuration-for-a-product">
+      Documentation</a></li>
+    </ul>
+  </tr>
+
+  <tr>
+    <td><code>/api/v0/vm_types</code></td>
+    <td>
+      <ul>
+        <li>Details about VMs used on your IaaS, including:
+            <ul>
+              <li>Name</li>
+              <li>RAM</li>
+              <li>CPU</li>
+              <li>Ephemeral disk</li>
+              <li>Built in (true/false)</li>
+            </ul>
+          </li>
+        <li><a href="http://docs.pivotal.io/pivotalcf/2-1/opsman-api/#vm-types">
+        Documentation</a></li>
+      </ul>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>/api/v0/deployed/products</code></td>
+    <td>
+      <ul>
+        <li>List of all deployed tiles, including:
+        <ul>
+          <li>Name</li>
+          <li>Version</li>
+          <li>Product guid</li>
+        </ul>
+        </li>
+        <li><a href="http://docs.pivotal.io/pivotalcf/2-1/opsman-api/#deployed-products">
+        Documentation</a></li>
+      </ul>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>/api/v0/installations</code></td>
+    <td>
+      <ul>
+        <li>Event history for tile changes, including:
+        <ul>
+          <li>Change type (e.g. - “upgrade”)</li>
+          <li>Start time</li>
+          <li>End time</li>
+          <li>Change status</li>
+        </ul>
+        </li>
+        <li> Username is redacted</li>
+        <li><a href="http://docs.pivotal.io/pivotalcf/2-1/opsman-api/#getting-a-list-of-recent-install-events">
+        Documentation</a></li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+Pivotal Telemetry Collector also provides a `metadata` file with the 
+following data:
+
+  - **Environment type** - the environment used when collecting data with the CLI (production, pre-production, development, QA); this is input by the CLI user
+  - **List of files collected** - the list of the files created by the
+    `collect` command
+  - **Data collection timestamp** - the date at which the data was
+    collected
+  - **Collector tool version** - the version of Pivotal Telemetry Collector 
+  used to collect data 

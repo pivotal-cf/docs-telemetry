@@ -1,0 +1,95 @@
+---
+title: Using the Pivotal Telemetry Collector CLI 
+owner: Telemetry
+---
+
+This topic explains how to use the Pivotal Telemetry Collector Command-Line Interface (CLI).
+
+<p class="note"><strong>Note:</strong> Pivotal recommends installing the Pivotal 
+Telemetry Collector with Concourse. For more information, see 
+<a href="./using-concourse.html"">Using Telemetry Collector for PCF with 
+Concourse</a>.</p>
+
+## <a id="prerequisite"></a>Prerequisite
+
+To complete the steps in this section, you must have the Pivotal 
+Telemetry Collector CLI binary that corresponds to your operating system. You can 
+download the binary from [Pivotal Network](https://network.pivotal.io/). 
+
+## <a id="install"></a>Install Manually
+
+To install Pivotal Telemetry Collector manually, complete the following steps:
+
+1.  Add the binary to your `$PATH`.
+1.  Open a terminal window and enter
+    `telemetry-collector` to verify your installation. If your installation 
+    succeeds, the command returns help commands.
+
+## <a id="cli"></a>Using Pivotal Telemetry Collector CLI
+
+Once you have installed the CLI, follow the procedure below to collect data from 
+your PCF foundation and send it to Pivotal. 
+
+### <a id="collect"></a> Collect 
+
+To collect data from your PCF foundation, run the following command: 
+
+  ```
+  telemetry-collector collect --output-dir MY-FILE-PATH \
+  --url OPS-MAN-URL --username OPS-MAN-USERNAME \
+  --password OPS-MAN-PASSWORD \
+  --env-type ENV-TYPE 
+  ```
+  Where:
+  
+  *  `MY-FILE-PATH` is your local directory where the command writes the output 
+  `tar` file. 
+  *  `OPS-MAN-URL` is the Ops Manager URL where the command collects data from. 
+  *  `OPS-MAN-USERNAME` is your Ops Manager username.
+  *  `OPS-MAN-PASSWORD` is your Ops Manager password.
+  *  `ENV-TYPE` is the type of environment you are using to collect data. You 
+  can enter one the following options: 
+    * `development`  
+    * `qa` 
+    * `pre-production` 
+    * `production`
+  
+<p class="note"><strong>Note:</strong>Your Ops Manager username and password are 
+not required if you are using client authentication. For more information 
+on the available flags, see 
+<a href ="./reference.html">Configuration Reference</a>.</p>
+  
+If the command succeeds, it returns the following message:
+  
+<pre class="terminal">
+Collecting data from Operations Manager at OPS-MAN-URL
+Wrote output to MY-FILE-PATH/FoundationDetails_#######.tar
+Success!</pre>
+
+After running the command, you can examine the data collected in the 
+`FoundationDetails_######.tar` file. 
+
+### <a id="send"></a> Send 
+
+To send data to Pivotal from your PCF foundation, run the following command:
+ 
+```
+telemetry-collector send --path PATH-TO-TAR-ARCHIVE \ 
+--api-key PIVOTAL-TELEMETRY-API-KEY
+```
+Where:
+
+* `PATH-TO-TAR-ARCHIVE` is the path to the `FoundationDetails_######.tar` file 
+written by the `collect` command.
+* `PIVOTAL-TELEMETRY-API-KEY` is the key used to authenticate with the Pivotal 
+Telemetry API.
+
+<p class="note"><strong>Note:</strong> You must send the original, unmodified 
+<code>FoundationDetails.tar</code> file for the command to work.</p>
+
+If the command succeeds, it returns the following message:
+
+<pre class="terminal">
+Sending MY-FILE-PATH/FoundationDetails_#######.tar to Pivotal 
+at https://telemetry.pivotal.io/load
+Success!</pre>
