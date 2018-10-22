@@ -67,7 +67,7 @@ in the Concourse CI documentation.
       - get: pivotal-telemetry-tasks
       - task: collect-with-user-creds
         image: execution-image
-        file: pivotal-telemetry-tasks/collect.yml
+        file: pivotal-telemetry-tasks/concourse-collect-task.yml
         params:
           OPS_MANAGER_URL: {{your-ops-manager-url}}
           OPS_MANAGER_USERNAME: {{your-ops-manager-username}}
@@ -75,7 +75,7 @@ in the Concourse CI documentation.
           ENV_TYPE: {{your-env-type}}
       - task: send
         image: execution-image
-        file: pivotal-telemetry-tasks/send.yml
+        file: pivotal-telemetry-tasks/concourse-send-task.yml
         params:
           API_KEY: {{pivotal-provided-api-key}}
     ```
