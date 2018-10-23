@@ -73,6 +73,7 @@ in the Concourse CI documentation.
           OPS_MANAGER_USERNAME: {{your-ops-manager-username}}
           OPS_MANAGER_PASSWORD: {{your-ops-manager-password}}
           ENV_TYPE: {{your-env-type}}
+          INSECURE_SKIP_TLS_VERIFY: false #setting to true will skip tls verification of Ops Manager
       - task: send
         image: execution-image
         file: pivotal-telemetry-tasks/concourse-send-task.yml
