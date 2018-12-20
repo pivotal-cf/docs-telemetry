@@ -8,7 +8,7 @@ secures collected data.
 
 ## <a id="overview"></a>Overview
 
-Pivotal Telemetry Collector collects technical product usage data
+Pivotal Telemetry Collector collects configuration data
 about your foundation. Pivotal Telemetry Collector 
 does not collect any personal data or
 information related to an identified or identifiable natural person. 
@@ -17,8 +17,7 @@ passwords, private keys, or other authentication-type tools.
 
 <p class="note"><strong>Note:</strong> Pivotal Telemetry Collector
 collects configuration data for all services installed on a
-foundation. This may include partner tile data as
-well.</p>
+foundation. This may include partner tile data.</p>
 
 ## <a id="security"></a>Security Measures
 
@@ -30,7 +29,7 @@ securely in Google Cloud Platform (GCP).
 Pivotal Telemetry Collector secures data during transmission using the following 
 measures:
 
-  - HTTPS connections when communicating with Ops Manager
+  - HTTPS connections when communicating
   - User-specific credentials to authenticate HTTPS requests to Pivotal
 
 ## <a id="collected"></a>Data Collected
@@ -139,7 +138,48 @@ following data:
       </ul>
     </td>
   </tr>
+
+  <tr>
+    <td><code>/api/v0/deployed/certificates</code></td>
+    <td>
+      <ul>
+        <li>Details about deployed certificates:
+        <ul>
+          <li>Issuer</li>
+          <li>Valid start and end dates</li>
+          <li>Configurable</li>
+          <li>Property reference</li>
+          <li>Property type</li>
+          <li>Property id</li>
+        </ul>
+        </li>
+        <li><a href="http://docs.pivotal.io/pivotalcf/2-3/opsman-api/#getting-information-about-certificates-from-products">
+        Documentation</a></li>
+      </ul>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>/api/v0/certificate_authorities</code></td>
+    <td>
+      <ul>
+        <li>Details about certificate authorities:
+        <ul>
+          <li>Id</li>
+          <li>Issuer</li>
+          <li>Created and expired dates</li>
+          <li>Active status</li>
+        </ul>
+        </li>
+        <li><a href="http://docs.pivotal.io/pivotalcf/2-3/opsman-api/#certificate-authorities">
+        Documentation</a></li>
+      </ul>
+    </td>
+  </tr>
 </table>
+
+The Telemetry Collector can also be optionally configured to collect certificate data from Credhub so that Pivotal may help  a customer better flag any soon-to-expire certificates. If configured to collect from Credhub, it will get the **Name**, **Issuer**, and **Valid Date** for each certificate.
+
 
 Pivotal Telemetry Collector also provides a `metadata` file with the 
 following data:

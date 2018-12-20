@@ -137,6 +137,19 @@ parameters:
           <li>Optional</li>
           </ul></td>
     </tr>
+
+    <tr>
+      <td><code>with-credhub-info</code></td>
+      <td>
+        <code></code>
+      </td>
+      <td>
+        <ul>
+          <li>Optional</li>
+          <li>When present, this will allow the Telemetry Collector to pull additional certificate information from Credhub so that Pivotla can help flag soon-to-expire certificates</li>
+          <li>Requires network access to the Credhub VM which is co-located on the BOSH Director VM</li>
+          </ul></td>
+    </tr>
         
 </table>
 
