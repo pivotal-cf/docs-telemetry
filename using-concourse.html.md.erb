@@ -65,7 +65,7 @@ in the Concourse CI documentation.
         trigger: true
       - get: binary
       - get: pivotal-telemetry-tasks
-      - task: collect-with-user-creds
+      - task: collect
         image: execution-image
         file: pivotal-telemetry-tasks/concourse-collect-task.yml
         params:
@@ -80,6 +80,16 @@ in the Concourse CI documentation.
         params:
           API_KEY: {{pivotal-provided-api-key}}
     ```
+
+1. (Optional) Add params to the collect task to additionally collect from the Usage Service:
+    ```
+    CF_API_URL: {{your-cf-api-url}}
+    USAGE_SERVICE_URL: {{your-usage-service-url}}
+    USAGE_SERVICE_CLIENT_ID: {{your-usage-service-client-id}}
+    USAGE_SERVICE_CLIENT_SECRET: {{your-usage-service-client-secret}}
+    USAGE_SERVICE_INSECURE_SKIP_TLS_VERIFY: false #setting to true will skip tls verification of the Usage Service
+    ```
+
 1. (Optional) Edit the timer-trigger resource to change the interval between data collection.
 
 1. Confirm your Concourse pipeline build is successful.

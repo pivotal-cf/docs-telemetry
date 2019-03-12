@@ -16,9 +16,13 @@ Pivotal continuously strives to learn and measure results in order to put custom
 experience at the forefront of our product decisions. Data and continuous feedback
 loops shape the way Pivotal builds software.
 
-Pivotal Telemetry Collector is an automated tool
-that collects configuration data from the Pivotal Cloud Foundry (PCF) Ops
-Manager API and securely sends that data to Pivotal.
+Pivotal Telemetry Collector is an automated tool that collects data from a series of 
+Pivotal Cloud Foundry (PCF) APIs found within a foundation and securely sends that 
+data to Pivotal. The tool collects:
+
+  * Configuration data from the Ops Manager API.
+  * Optional certificate data from the CredHub API.
+  * Optional app, task and service instance usage data from the Usage Service API.
 
 Pivotal uses this information to do the following:
 
