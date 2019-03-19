@@ -181,8 +181,8 @@ following data:
 </table>
 
 
-##### From Usage Service #####
-The Telemetry Collector can be optionally configured to collect information about apps, tasks, and service instances from the Usage Service.
+##### From the Usage Service #####
+The Telemetry Collector can be optionally configured to collect information about application instances, tasks, and service instances from the Usage Service.
 
 <table class "nice">
   <tr>
@@ -237,11 +237,11 @@ The Telemetry Collector can be optionally configured to collect information abou
                <li>Maximum service instances</li>
                <li>Service plan usage:
                  <ul>
-                    <li>Service plan name</li>
                     <li>Service plan GUID</li>
                     <li>Service plan duration in hours</li>
                     <li>Service plan average service instances</li>
                     <li>Service plan maximum service instances</li>
+                    <li>Service plan name is filtered out</li>
                   </ul>
                </li>
                <li><a href="https://docs.pivotal.io/pivotalcf/2-4/opsguide/accounting-report.html#service-usage">
@@ -254,7 +254,7 @@ The Telemetry Collector can be optionally configured to collect information abou
 
 </table>
 
-The Telemetry Collector can also be optionally configured to collect certificate data from Credhub so that Pivotal may help  a customer better flag any soon-to-expire certificates. If configured to collect from Credhub, it will get the **Name**, **Issuer**, and **Valid Date** for each certificate.
+The Telemetry Collector can be optionally configured to collect certificate data from Credhub so that Pivotal may help  a customer better flag any soon-to-expire certificates. If configured to collect from Credhub, it will get the **Name**, **Issuer**, and **Valid Date** for each certificate.
 
 
 Pivotal Telemetry Collector also provides a `metadata` file with the 
@@ -265,6 +265,6 @@ following data:
     `collect` command
   - **Data collection timestamp** - the date at which the data was
     collected
-  - **Foundation ID** - the product GUID of the Bosh Director
+  - **Foundation ID** - the product GUID of the BOSH Director
   - **Collector tool version** - the version of Pivotal Telemetry Collector 
   used to collect data 
