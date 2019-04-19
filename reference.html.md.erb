@@ -108,6 +108,7 @@ parameters:
           <li>The type of environment you are using to collect data</li>
           <li>You can enter one the following options:
             <ul>
+              <li>sandbox</li>
               <li>development</li>
               <li>qa</li> 
               <li>pre-production</li> 
@@ -153,19 +154,6 @@ parameters:
           <li>When present, this will allow the Telemetry Collector to pull additional certificate information from Credhub so that Pivotal can help flag soon-to-expire certificates</li>
           <li>Requires network access to the Credhub VM which is co-located on the BOSH Director VM</li>
           </ul></td>
-    </tr>
-
-    <tr>
-        <td><code>with-credhub-info</code></td>
-        <td>
-          <code>$WITH_CREDHUB_INFO</code>
-        </td>
-        <td>
-          <ul>
-            <li>Optional</li>
-            <li>When present, this will allow the Telemetry Collector to pull additional certificate information from Credhub so that Pivotal can help flag soon-to-expire certificates</li>
-            <li>Requires network access to the Credhub VM which is co-located on the BOSH Director VM</li>
-            </ul></td>
     </tr>
 
     <tr>
