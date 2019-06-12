@@ -3,94 +3,74 @@ title: Using Pivotal Telemetry Collector with Concourse
 owner: Telemetry
 ---
 
-This topic explains how to use Pivotal Telemetry Collector
-with Concourse.
+Pivotal recommends running the Pivotal Telemetry Collector with Concourse.
 
-Pivotal recommends installing the Pivotal Telemetry Collector with Concourse.
-If you do not have Concourse deployed within your environment, you can run it
-manually from the command line.
+If you do not have Concourse deployed within your environment, you can run the collector
+manually from the command line. See [Using the Telemetry Collector for PCF CLI ](./using-cli.html).
 
-For more information about manually installing Pivotal Telemetry Collector, see
-[Using the Telemetry Collector for PCF CLI ](./using-cli.html).
+## <a id="configure"></a>Configure collection with Concourse
 
-## <a id="prerequisites"></a>Prerequisites
+Configure a new job in your pipeline using the example pipeline below as a guide.
 
-To complete the steps in this section, you must have the following:
+```
+resource_types:
+- name: pivnet
+  type: registry-image
+  source:
+    repository: pivotalcf/pivnet-resource
+    tag: latest-final
 
-- A Docker image resource than can run a CLI binary. The image must be compatible
-with Linux, MacOS/darwin, or Windows.
-- The CLI binary for Pivotal Telemetry Collector that corresponds to your Docker
-image OS. You can download the binary from
-[Pivotal Network](https://network.pivotal.io/).
-- The YAML task files for Pivotal Telemetry Collector from
-[Pivotal Network](https://network.pivotal.io/). These task files are for
-collecting and sending data
+resources:
+- name: pivotal-telemetry-collector
+  type: pivnet
+  source:
+    api_token: {{pivnet-api-token}}
+    product_slug: pivotal-telemetry-collector
+- name: execution-image
+  type: pivnet
+  source:
+    api_token: {{pivnet-api-token}}
+    product_slug: platform-automation
+- name: timer-trigger
+  type: time
+  source:
+    interval: 168h # trigger collection once a week
 
-## <a id="install"></a>Install with Concourse
-
-To install the CLI with Concourse, complete the following steps:
-
-1. Store the CLI binary and YAML tasks files using a resource that Concourse
-can access. Pivotal recommends using a s3 bucket or a git repository to store
-the CLI binary. For more information, see
-[Resources Provided with Concourse](https://concourse-ci.org/included-resources.html)
-in the Concourse CI documentation.
-1. Add the task files to your pipeline.
-
-## <a id="configure"></a>Configure with Concourse
-
-1. Configure a new task into your pipeline using the Concourse task configuration template below as a guide.
-
-    ```
-    resources:
-    #resource where the task files are stored. E.g. git
-    - name: pivotal-telemetry-tasks
-    ...
-    #resource where CLI binary is stored. E.g. s3
-    - name: binary
-    ...
-    #resource of docker image with which to execute binary
-    - name: execution-image
-    ...
-    #resource to trigger collect and send on a weekly cadence.
-    - name: timer-trigger
-      type: time
-      source:
-        interval: 168h # 1 week
-
-    jobs:
-    - name: collect-and-send-data
-      plan:
-      - get: timer-trigger
-        trigger: true
-      - get: binary
-      - get: pivotal-telemetry-tasks
-      - task: collect
-        image: execution-image
-        file: pivotal-telemetry-tasks/concourse-collect-task.yml
-        params:
-          OPS_MANAGER_URL: {{your-ops-manager-url}}
-          OPS_MANAGER_USERNAME: {{your-ops-manager-username}}
-          OPS_MANAGER_PASSWORD: {{your-ops-manager-password}}
-          ENV_TYPE: {{your-env-type}}
-          INSECURE_SKIP_TLS_VERIFY: false #setting to true will skip tls verification of Ops Manager
-      - task: send
-        image: execution-image
-        file: pivotal-telemetry-tasks/concourse-send-task.yml
-        params:
-          API_KEY: {{pivotal-provided-api-key}}
-    ```
-
-1. (Optional) Add params to the collect task to additionally collect from the Usage Service.
-
-    ```
-    CF_API_URL: {{your-cf-api-url}}
-    USAGE_SERVICE_URL: {{your-usage-service-url}}
-    USAGE_SERVICE_CLIENT_ID: {{your-usage-service-client-id}}
-    USAGE_SERVICE_CLIENT_SECRET: {{your-usage-service-client-secret}}
-    USAGE_SERVICE_INSECURE_SKIP_TLS_VERIFY: false #setting to true will skip tls verification of the Usage Service
-    ```
-
-1. (Optional) Edit the timer-trigger resource to change the interval between data collection.
-
-1. Confirm your Concourse pipeline build is successful.
+jobs:
+- name: collect-and-send-data
+  plan:
+  - get: execution-image
+    params:
+      globs: ["platform-automation-image*"]
+      unpack: true
+  - get: timer-trigger
+    trigger: true
+  - get: binary
+    resource: pivotal-telemetry-collector
+    params:
+      unpack: true
+  - get: tasks
+    resource: pivotal-telemetry-collector
+    params:
+      unpack: true
+  - task: collect
+    image: execution-image
+    file: tasks/collect.yml
+    params:
+      OPS_MANAGER_URL: {{your-ops-manager-url}}
+      OPS_MANAGER_USERNAME: {{your-ops-manager-username}}
+      OPS_MANAGER_PASSWORD: {{your-ops-manager-password}}
+      ENV_TYPE: {{your-env-type}}
+      INSECURE_SKIP_TLS_VERIFY: false #setting to true will skip tls verification of Ops Manager
+      # Optionally collect from Usage Service
+      CF_API_URL: {{your-cf-api-url}}
+      USAGE_SERVICE_URL: {{your-usage-service-url}}
+      USAGE_SERVICE_CLIENT_ID: {{your-usage-service-client-id}}
+      USAGE_SERVICE_CLIENT_SECRET: {{your-usage-service-client-secret}}
+      USAGE_SERVICE_INSECURE_SKIP_TLS_VERIFY: false #setting to true will skip tls verification of the Usage Service
+  - task: send
+    image: execution-image
+    file: tasks/send.yml
+    params:
+      API_KEY: {{pivotal-provided-api-key}}
+```
