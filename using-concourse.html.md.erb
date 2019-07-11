@@ -48,10 +48,12 @@ jobs:
   - get: binary
     resource: pivotal-telemetry-collector
     params:
+      globs: [".tgz"]
       unpack: true
   - get: tasks
     resource: pivotal-telemetry-collector
     params:
+      globs: [".tgz"]
       unpack: true
   - task: collect
     image: execution-image
