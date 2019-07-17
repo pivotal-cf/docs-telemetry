@@ -180,7 +180,7 @@ parameters:
           <li>string</li>
           <li>Required for usage data collection</li>
           <li>Usage Service URL where the command collects usage data from</li>
-          <li>Example: https://app-usage.system.my-pcf.my-co.com</li>
+          <li>Example: <code>https://app-usage.YOUR-SYSTEM-DOMAIN</code></li>
         </ul>
       </td>
     </tr>
@@ -195,7 +195,7 @@ parameters:
           <li>string</li>
           <li>Usage Service client ID</li>
           <li>Required for usage data collection</li>
-          <li>Retreive from Usage Service Client Credentials in PAS Tile Credentials tab</li>
+          <li>Client needs to be a member of either the <code>cloud_controller.admin</code> or <code>usage_service.audit</code> group</li>
         </ul>
       </td>
     </tr>
@@ -210,7 +210,7 @@ parameters:
           <li>string</li>
           <li>Usage Service client secret</li>
           <li>Required for usage data collection</li>
-          <li>Retreive from Usage Service Client Credentials in PAS Tile Credentials tab</li>
+          <li>Client needs to be a member of either the <code>cloud_controller.admin</code> or <code>usage_service.audit</code> group</li>
         </ul>
       </td>
     </tr>

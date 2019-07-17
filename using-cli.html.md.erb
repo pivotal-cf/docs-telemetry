@@ -51,9 +51,9 @@ To collect data from your PCF foundations Ops Manager (and optionally Usage Serv
     * `qa` 
     * `pre-production` 
     * `production`
-  *  `--cf-api-url` is the CF API URL for UAA authentication to access Usage Service.
-  *  `--usage-service-url` is the Usage Service URL.
-  *  `--usage-service-client-id` is the Usage Service client id.
+  *  `--cf-api-url` is the CF API URL for UAA authentication to access Usage Service
+  *  `--usage-service-url` is the Usage Service URL (this URL is typically: `https://app-usage.YOUR-SYSTEM-DOMAIN`)
+  *  `--usage-service-client-id` is the Usage Service client id. Note that this client needs to be a member of either the `cloud_controller.admin` or `usage_service.audit` group.
   *  `--usage-service-client-secret` is the Usage Service client secret.
   *  `--output-dir` is your local directory where the command writes the output `tar` file. 
   
