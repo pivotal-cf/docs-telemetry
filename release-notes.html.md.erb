@@ -3,9 +3,10 @@ title: Release Notes
 owner: Telemetry
 ---
 
-This page documents the release notes for all releases related to the Pivotal Telemetry Collector v1.0.
+This page documents the release notes for all releases related to the Pivotal Telemetry Collector v1.1.
 
-## <a id='v1.0.1'></a>v1.0.1
+## <a id='v1.1.0'></a>v1.1.0
 
-* GA release for the Pivotal Telemetry Collector.
-* The Telemetry Collector is now packaged as a single versioned file to make it easier to automate.
+* Enforces TLS 1.2 for https connections.
+* Adds `--config` flag to enable passing in a config file to specify other command flags.
+* Removes cert installation in provided `send` Concourse task
