@@ -3,35 +3,11 @@ title: Pivotal Telemetry Collector
 owner: Telemetry
 ---
 
-This guide describes the Pivotal Telemetry Collector. Topics covered in this
-guide include Pivotal Telemetry Collector security measures, installation, and
-configuration.
+This guide describes Pivotal Telemetry Collector, a stand-alone tool, and light-weight alternative to to the Pivotal Telemetry for Ops Manager tile. It can be used manually as a CLI or automated through Concourse. The tool can be configured to share product usage data with Pivotal so that we could help improve our products and services based on real-world feedback.
 
-For information about Telemetry for Pivotal Container Service (PKS), see [PKS
-Telemetry](https://docs.pivotal.io/runtimes/pks/telemetry.html).
-
-## <a id="overview"></a>Overview
-
-Pivotal continuously strives to learn and measure results in order to put customer
-experience at the forefront of our product decisions. Data and continuous feedback
-loops shape the way Pivotal builds software.
-
-Pivotal Telemetry Collector is an automated tool that collects data from a series of 
-Pivotal Cloud Foundry (PCF) APIs found within a foundation and securely sends that 
-data to Pivotal. The tool collects:
-
-  * Configuration data from the Ops Manager API.
-  * Optional certificate data from the CredHub API.
-  * Optional app, task and service instance usage data from the Usage Service API.
-
-Pivotal uses this information to do the following:
-
-  * Improve its products and services.
-  * Fix problems.
-  * Advise customers on how best to deploy and use Pivotal products.
-  * Provide better customer support.
-
-The Pivotal Telemetry Collector is available for download on [Pivotal Network](https://network.pivotal.io/products/pivotal-telemetry-collector/).
+* For information about the telemetry tile that ships with Ops Manager 2.8, see [Pivotal Telemetry for Ops Manager](https://docs.pivotal.io/telemetry/pivotal-telemetry-for-ops-manager/1-0/index.html).
+* For information about the stand-alone telemetry CLI, see [Pivotal Telemetry Collector](https://docs.pivotal.io/telemetry/pivotal-telemetry-collector/1-1/index.html).
+* For information about Telemetry for Pivotal Container Service (PKS), see [PKS Telemetry](https://docs.pivotal.io/runtimes/pks/telemetry.html).
 
 ## <a id="requirements"></a>Requirements
 
@@ -41,6 +17,9 @@ To use Pivotal Telemetry Collector, you will need the following:
     Ops Manager
   - Pivotal Telemetry Collector API credentials provided by Pivotal
   - The ability to enable egress from the Telemetry Collector to `https://telemetry.pivotal.io` on port `443`.
+
+## <a id="opt-in"></a>How To Opt In
+To opt-in to Pivotal Telemetry Collector you will need to download the tool from Pivnet, accept the End User License Agreement (EULA), and enter a Pivotal-issued API key specific to telemetry.
 
 ## <a id="contact-us"></a>Contact Us
 
