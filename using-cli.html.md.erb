@@ -44,6 +44,8 @@ To collect data from your PCF foundations Ops Manager (and optionally Usage Serv
   *  `--url` is the Ops Manager URL where the command collects data from. 
   *  `--username` is your Ops Manager username.
   *  `--password` is your Ops Manager password.
+  *  `--client-id` needs to be created within the OM UAA for accessing OM API.
+  *  `--client-secret` is the secret associated with the client-id.
   *  `--env-type` is the type of environment you are using to collect data. You 
   can enter one the following options: 
     * `sandbox`         
@@ -53,7 +55,7 @@ To collect data from your PCF foundations Ops Manager (and optionally Usage Serv
     * `production`
   *  `--cf-api-url` is the CF API URL for UAA authentication to access Usage Service
   *  `--usage-service-url` is the Usage Service URL (this URL is typically: `https://app-usage.YOUR-SYSTEM-DOMAIN`)
-  *  `--usage-service-client-id` is the Usage Service client id. Note that this client needs to be a member of either the `cloud_controller.admin` or `usage_service.audit` group.
+  *  `--usage-service-client-id` is the Usage Service client id. Note that this client needs to exist in the PAS UAA and to be a member of either the `cloud_controller.admin` or `usage_service.audit` group.
   *  `--usage-service-client-secret` is the Usage Service client secret.
   *  `--output-dir` is your local directory where the command writes the output `tar` file. 
   
