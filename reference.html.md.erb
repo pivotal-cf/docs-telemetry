@@ -16,11 +16,9 @@ To collect data with Pivotal Telemetry Collector you configure the following
 parameters:
 
 <table class="nice">
-
     <th>Flag</th>
     <th>Environment Variable</th>
     <th>Description</th>
-    
     <tr>
       <td><code>output-dir</code></td>
       <td>
@@ -31,7 +29,6 @@ parameters:
           <li>Local directory where the command writes the output <code>tar</code> 
           file</li></ul></td>
     </tr>
-    
     <tr>
       <td><code>url</code></td>
       <td>
@@ -43,7 +40,6 @@ parameters:
         </ul>
       </td>
     </tr>
-    
     <tr>
       <td><code>username</code></td>
       <td>
@@ -56,7 +52,6 @@ parameters:
         </ul>
       </td>
     </tr>
-    
     <tr>
       <td><code>password</code></td>
       <td>
@@ -69,7 +64,6 @@ parameters:
         </ul>
       </td>
     </tr>
-    
     <tr>
       <td><code>client-id</code></td>
       <td>
@@ -82,8 +76,7 @@ parameters:
           <code>password</code> parameters for authentication</li>
         </ul>
       </td>
-    </tr>
-    
+    </tr>    
     <tr >
       <td><code>client-secret</code></td>
         <td>
@@ -96,8 +89,7 @@ parameters:
             <code>password</code> for authentication</li>
           </ul>
         </td>
-    </tr>
-    
+    </tr>    
     <tr>
       <td><code>env-type</code></td>
       <td>
@@ -118,7 +110,17 @@ parameters:
         </ul>
       </td>
     </tr>
-    
+    <tr>
+      <td><code>foundation-nickname</code></td>
+      <td>
+        <code>$FOUNDATION_NICKNAME</code>
+      </td><td>
+        <ul>
+          <li>string</li>
+          <li>Specify foundation nickname used in reporting by VMware</li>
+        </ul>
+      </td>
+    </tr>    
     <tr>
       <td><code>insecure-skip-tls-verify</code></td>
       <td>(none)</td>
@@ -127,8 +129,7 @@ parameters:
         <li>Skips TLS validation on HTTP requests to Ops Manager</li>
         </ul>
       </td>
-    </tr>
-    
+    </tr>    
     <tr>
       <td><code>ops-manager-timeout</code></td>
       <td>
@@ -142,7 +143,6 @@ parameters:
           <li>Optional</li>
           </ul></td>
     </tr>
-
     <tr>
       <td><code>with-credhub-info</code></td>
       <td>
@@ -155,7 +155,6 @@ parameters:
           <li>Requires network access to the Credhub VM which is co-located on the BOSH Director VM</li>
           </ul></td>
     </tr>
-
     <tr>
       <td><code>cf-api-url</code></td>
       <td>
@@ -169,7 +168,6 @@ parameters:
         </ul>
       </td>
     </tr>
-
     <tr>
       <td><code>usage-service-url</code></td>
       <td>
@@ -184,7 +182,6 @@ parameters:
         </ul>
       </td>
     </tr>
-
     <tr>
       <td><code>usage-service-client-id</code></td>
       <td>
@@ -199,7 +196,6 @@ parameters:
         </ul>
       </td>
     </tr>
-
     <tr>
       <td><code>usage-service-client-secret</code></td>
       <td>
@@ -214,7 +210,6 @@ parameters:
         </ul>
       </td>
     </tr>
-
     <tr>
       <td><code>usage-service-insecure-skip-tls-verify</code></td>
       <td>
