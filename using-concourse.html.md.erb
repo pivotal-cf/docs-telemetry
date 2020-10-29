@@ -1,9 +1,9 @@
 ---
-title: Using Pivotal Telemetry Collector with Concourse
+title: Using Tanzu Telemetry Collector with Concourse
 owner: Telemetry
 ---
 
-Pivotal recommends running the Pivotal Telemetry Collector with Concourse.
+VMware recommends running the Tanzu Telemetry Collector with Concourse.
 
 If you do not have Concourse deployed within your environment, you can run the collector
 manually from the command line. See [Using the Telemetry Collector for PCF CLI ](./using-cli.html).
@@ -74,5 +74,5 @@ jobs:
     image: execution-image
     file: tasks/send.yml
     params:
-      API_KEY: {{pivotal-provided-api-key}}
+      API_KEY: {{vmware-provided-api-key}}
 ```

@@ -3,38 +3,38 @@ title: Data Security
 owner: Telemetry
 ---
 
-This topic describes how Pivotal Telemetry Collector transmits, stores, and 
+This topic describes how Tanzu Telemetry Collector transmits, stores, and 
 secures collected data.
 
 ## <a id="overview"></a>Overview
 
-Pivotal Telemetry Collector collects configuration data
-about your foundation. Pivotal Telemetry Collector 
+Tanzu Telemetry Collector collects configuration data
+about your foundation. Tanzu Telemetry Collector 
 does not collect any personal data or
 information related to an identified or identifiable natural person. 
 For example, it does not collect data on
 passwords, private keys, or other authentication-type tools. 
 
-<p class="note"><strong>Note:</strong> Pivotal Telemetry Collector
+<p class="note"><strong>Note:</strong> Tanzu Telemetry Collector
 collects configuration data for all services installed on a
 foundation. This may include partner tile data.</p>
 
 ## <a id="security"></a>Security Measures
 
-Pivotal Telemetry Collector connects to Ops Manager and optionally the <a href="https://docs.pivotal.io/pivotalcf/2-4/opsguide/accounting-report.html">Usage Service</a> on any Pivotal Cloud Foundry
-(PCF) foundation that has provided valid credentials. After Pivotal Telemetry 
-Collector collects data, this data may be transmitted to Pivotal. The data is stored 
+Tanzu Telemetry Collector connects to Ops Manager and optionally the <a href="https://docs.pivotal.io/application-service/2-10/operating/accounting-report.html">Usage Service</a> on any VMware Tanzu Cloud Foundry
+(PCF) foundation that has provided valid credentials. After Tanzu Telemetry 
+Collector collects data, this data may be transmitted to VMware. The data is stored 
 securely in Google Cloud Platform (GCP).
 
-Pivotal Telemetry Collector secures data during transmission using the following 
+Tanzu Telemetry Collector secures data during transmission using the following 
 measures:
 
   - HTTPS connections when communicating
-  - User-specific credentials to authenticate HTTPS requests to Pivotal
+  - User-specific credentials to authenticate HTTPS requests to VMware
 
 ## <a id="collected"></a>Data Collected
 
-Pivotal Telemetry Collector collects data in a `FoundationDetails_######.tar` 
+Tanzu Telemetry Collector collects data in a `FoundationDetails_######.tar` 
 file on your local filesystem. The `FoundationDetails_######.tar` contains the 
 following data:
 
@@ -200,7 +200,7 @@ The Telemetry Collector can be optionally configured to collect information abou
               <li>App instance hours</li>
               <li>Average app instances</li>
               <li>Maximum app instances</li>
-              <li><a href="https://docs.pivotal.io/pivotalcf/2-4/opsguide/accounting-report.html#app-usage">
+              <li><a href="https://docs.pivotal.io/application-service/2-10/operating/accounting-report.html#app-usage">
                Documentation</a>
            </ul>
           </li>
@@ -217,7 +217,7 @@ The Telemetry Collector can be optionally configured to collect information abou
                <li>Total task runs</li>
                <li>Maximum concurrent tasks</li>
                <li>Task hours</li>
-               <li><a href="https://docs.pivotal.io/pivotalcf/2-4/opsguide/accounting-report.html#task-usage">
+               <li><a href="https://docs.pivotal.io/application-service/2-10/operating/accounting-report.html#task-usage">
                Documentation</a>
             </ul>
          </li>
@@ -245,7 +245,7 @@ The Telemetry Collector can be optionally configured to collect information abou
                     <li>Service plan name is filtered out</li>
                   </ul>
                </li>
-               <li><a href="https://docs.pivotal.io/pivotalcf/2-4/opsguide/accounting-report.html#service-usage">
+               <li><a href="https://docs.pivotal.io/application-service/2-10/operating/accounting-report.html#service-usage">
                Documentation</a>
              </ul>
            </li>
@@ -257,7 +257,7 @@ The Telemetry Collector can be optionally configured to collect information abou
 
 ## <a id="from-credHub"></a>From CredHub
 
-The Telemetry Collector can be optionally configured to collect certificate data from Credhub so that Pivotal may help  a customer better flag any soon-to-expire certificates. If configured to collect from Credhub, it will get the **Name**, **Issuer**, and **Valid Date** for each certificate.
+The Telemetry Collector can be optionally configured to collect certificate data from Credhub so that VMware may help a customer better flag any soon-to-expire certificates. If configured to collect from Credhub, it will get the **Name**, **Issuer**, and **Valid Date** for each certificate.
 
 
 ## <a id="metadata"></a>Metadata
@@ -308,7 +308,7 @@ The Telemetry Collector can be optionally configured to collect certificate data
     <td>Collector tool version</td>
     <td>
       <ul>
-        <li>The version of Pivotal Telemetry Collector used to collect data</li>
+        <li>The version of Tanzu Telemetry Collector used to collect data</li>
       </ul>
     </td>
   </tr>

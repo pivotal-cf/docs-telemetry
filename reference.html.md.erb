@@ -4,7 +4,7 @@ owner: Telemetry
 ---
 
 This topic lists the parameters that are used to collect and send data with 
-Pivotal Telemetry Collector.
+Tanzu Telemetry Collector.
 
 <p class="note"><strong>Note:</strong>
 If you have an HTTP proxy server on your network you must set <code>https_proxy</code> with the hostname or IP address of the proxy server.
@@ -12,7 +12,7 @@ If you have an HTTP proxy server on your network you must set <code>https_proxy<
 
 ## <a id="collect"></a>Collect
 
-To collect data with Pivotal Telemetry Collector you configure the following 
+To collect data with Tanzu Telemetry Collector you configure the following 
 parameters:
 
 <table class="nice">
@@ -152,7 +152,7 @@ parameters:
       <td>
         <ul>
           <li>Optional</li>
-          <li>When present, this will allow the Telemetry Collector to pull additional certificate information from Credhub so that Pivotal can help flag soon-to-expire certificates</li>
+          <li>When present, this will allow the Telemetry Collector to pull additional certificate information from Credhub so that VMware can help flag soon-to-expire certificates</li>
           <li>Requires network access to the Credhub VM which is co-located on the BOSH Director VM</li>
           </ul></td>
     </tr>
@@ -238,7 +238,7 @@ parameters:
 
 ## <a id="send"></a>Send
 
-To send data with Pivotal Telemetry Collector you configure the following 
+To send data with Tanzu Telemetry Collector you configure the following 
 parameters:
 
 <table class="nice">
@@ -264,8 +264,8 @@ parameters:
   <td>
     <ul>
       <li>string</li>
-      <li>Key used to authenticate with the Pivotal Telemetry API</li>
-      <li>Provided to customers by Pivotal</li>
+      <li>Key used to authenticate with the Tanzu Telemetry API</li>
+      <li>Provided to customers by VMware</li>
     </ul>
   </td>
 </tr>

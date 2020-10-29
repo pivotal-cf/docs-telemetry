@@ -1,34 +1,34 @@
 ---
-title: Using the Pivotal Telemetry Collector CLI 
+title: Using the Tanzu Telemetry Collector CLI 
 owner: Telemetry
 ---
 
-This topic explains how to use the Pivotal Telemetry Collector Command-Line Interface (CLI).
+This topic explains how to use the Tanzu Telemetry Collector Command-Line Interface (CLI).
 
-<p class="note"><strong>Note:</strong> Pivotal recommends installing the Pivotal 
+<p class="note"><strong>Note:</strong> VMware recommends installing the Tanzu 
 Telemetry Collector with Concourse. For more information, see 
 <a href="./using-concourse.html"">Using Telemetry Collector for PCF with 
 Concourse</a>.</p>
 
 ## <a id="prerequisite"></a>Prerequisite
 
-To complete the steps in this section, you must have the Pivotal 
+To complete the steps in this section, you must have the Tanzu 
 Telemetry Collector CLI binary that corresponds to your operating system. You can 
-download the binary from [Pivotal Network](https://network.pivotal.io/products/pivotal-telemetry-collector/). 
+download the binary from [Tanzu Network](https://network.pivotal.io/products/pivotal-telemetry-collector/). 
 
 ## <a id="install"></a>Install Manually
 
-To install Pivotal Telemetry Collector manually, complete the following steps:
+To install the Tanzu Telemetry Collector manually, complete the following steps:
 
 1.  Add the binary to your `$PATH`.
 1.  Open a terminal window and enter
     `telemetry-collector` to verify your installation. If your installation 
     succeeds, the command returns help commands.
 
-## <a id="cli"></a>Using Pivotal Telemetry Collector CLI
+## <a id="cli"></a>Using Tanzu Telemetry Collector CLI
 
 Once you have installed the CLI, follow the procedure below to collect data from 
-your PCF foundation and send it to Pivotal. 
+your PCF foundation and send it to VMware. 
 
 ### <a id="collect"></a> Collect 
 
@@ -77,7 +77,7 @@ After running the command, you can examine the data collected in the
 
 ### <a id="send"></a> Send 
 
-To send data to Pivotal from your PCF foundation, run the following command:
+To send data to VMware from your PCF foundation, run the following command:
  
 ```
 telemetry-collector send --path --api-key
@@ -86,7 +86,7 @@ Where:
 
 * `--path` is the path to the `FoundationDetails_######.tar` file 
 written by the `collect` command.
-* `--api-key` is the Telemetry API key used to authenticate with Pivotal.
+* `--api-key` is the Telemetry API key used to authenticate with VMware.
 
 <p class="note"><strong>Note:</strong> You must send the original, unmodified 
 <code>FoundationDetails.tar</code> file for the command to work.</p>

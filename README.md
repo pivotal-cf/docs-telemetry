@@ -1,3 +1,3 @@
 # docs-telemetry
 
-This repo contains the source materials for the Pivotal Cloud Foundry Telemetry Collector documentation.
+This repo contains the source materials for the Tanzu Cloud Foundry Telemetry Collector documentation.
