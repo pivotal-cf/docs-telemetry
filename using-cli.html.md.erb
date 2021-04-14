@@ -37,7 +37,7 @@ To collect data from your PCF foundations Ops Manager (and optionally Usage Serv
   ```
   telemetry-collector collect --url --username --password [or --client-id and
   --client-secret] --usage-service-url --usage-service-client-id
-  --usage-service-client-secret --cf-api-url --env-type --output-dir
+  --usage-service-client-secret --cf-api-url --env-type --output-dir --foundation-nickname
   ```
   Where:
   
@@ -58,7 +58,7 @@ To collect data from your PCF foundations Ops Manager (and optionally Usage Serv
   *  `--usage-service-url` is the Usage Service URL (this URL is typically: `https://app-usage.YOUR-SYSTEM-DOMAIN`)
   *  `--usage-service-client-id` is the Usage Service client id. Note that this client needs to exist in the PAS UAA and to be a member of either the `cloud_controller.admin` or `usage_service.audit` group.
   *  `--usage-service-client-secret` is the Usage Service client secret.
-  *  `--output-dir` is your local directory where the command writes the output `tar` file. 
+  *  `--output-dir` is your local directory where the command writes the output `tar` file.
   
 <p class="note"><strong>Note:</strong> Your Ops Manager username and password are 
 not required if you are using client authentication. For more information 
