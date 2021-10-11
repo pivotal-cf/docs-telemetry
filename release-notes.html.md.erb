@@ -7,7 +7,9 @@ This page documents the release notes for all releases related to the VMware Tan
 
 ## <a id='v1.2.0'></a>v1.2.0
 
-* Staged Changes 
+This release is a major feature improvement of our collection mechanism, resolving the largest failure mode: having staged changes on the foundation.
+
+* Allowing Staged Changes
     * Does not fail to collect when there are staged changes present on the foundation
     * Collects from a new endpoint in pending changes to understand which products are deployed and which are staged
     * Warns when staged changes are present detailing which changes are staged and how they may affect reporting
