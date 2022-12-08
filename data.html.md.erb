@@ -38,13 +38,13 @@ Tanzu Telemetry Collector collects data in a `FoundationDetails_######.tar`
 file on your local filesystem. The `FoundationDetails_######.tar` contains the 
 following data:
 
-##### From Ops Manager #####
+### From Ops Manager
+
 <table class "nice">
   <tr>
     <th><strong>API Endpoint</th>
     <th>Data Collected</th>
   </tr>
-
   <tr>
     <td><code>/api/v0/diagnostic_report</code></td>
     <td>
@@ -62,7 +62,6 @@ following data:
       </ul>
     </td>
   </tr>
-
   <tr>
     <td><code>/api/v0/staged/products/:product_guid/properties</code></td>
     <td>
@@ -73,7 +72,6 @@ following data:
       </ul>
     </td>
   </tr>
-
   <tr>
     <td><code>/api/v0/staged/products/:product_guid/resources</code></td>
   <td>
@@ -85,7 +83,6 @@ following data:
       Documentation</a></li>
     </ul>
   </tr>
-
   <tr>
     <td><code>/api/v0/vm_types</code></td>
     <td>
@@ -104,7 +101,6 @@ following data:
       </ul>
     </td>
   </tr>
-
   <tr>
     <td><code>/api/v0/deployed/products</code></td>
     <td>
@@ -121,7 +117,6 @@ following data:
       </ul>
     </td>
   </tr>
-
   <tr>
     <td><code>/api/v0/installations</code></td>
     <td>
@@ -140,7 +135,6 @@ following data:
       </ul>
     </td>
   </tr>
-
   <tr>
     <td><code>/api/v0/deployed/certificates</code></td>
     <td>
@@ -160,7 +154,6 @@ following data:
       </ul>
     </td>
   </tr>
-
   <tr>
     <td><code>/api/v0/certificate_authorities</code></td>
     <td>
@@ -179,7 +172,6 @@ following data:
       </ul>
     </td>
   </tr>
-
   <tr>
     <td><code>/api/v0/staged/pending_changes</code></td>
     <td>
@@ -201,7 +193,8 @@ following data:
 </table>
 
 
-##### From the Usage Service #####
+### From the Usage Service 
+
 The Telemetry Collector can be optionally configured to collect information about application instances, tasks, and service instances from the Usage Service.
 
 <table class "nice">
@@ -209,7 +202,6 @@ The Telemetry Collector can be optionally configured to collect information abou
     <th><strong>API Endpoint</th>
     <th>Data Collected</th>
   </tr>
-
   <tr>
       <td><code>/system_report/app_usages</code></td>
       <td>
@@ -226,7 +218,6 @@ The Telemetry Collector can be optionally configured to collect information abou
         </ul>
       </td>
   </tr>
-
   <tr>
      <td><code>/system_report/task_usages</code></td>
      <td>
@@ -243,7 +234,6 @@ The Telemetry Collector can be optionally configured to collect information abou
        </ul>
      </td>
    </tr>
-
    <tr>
       <td><code>/system_report/service_usages</code></td>
       <td>
@@ -271,7 +261,6 @@ The Telemetry Collector can be optionally configured to collect information abou
          </ul>
        </td>
      </tr>
-
 </table>
 
 ## <a id="from-credHub"></a>From CredHub
@@ -286,7 +275,6 @@ The Telemetry Collector can be optionally configured to collect certificate data
     <th>Data</th>
     <th>Description</th>
   </tr>
-
   <tr>
     <td>Environment type</td>
     <td>
@@ -295,7 +283,6 @@ The Telemetry Collector can be optionally configured to collect certificate data
       </ul>
     </td>
   </tr>
-
   <tr>
     <td>List of files collected</td>
     <td>
@@ -304,7 +291,6 @@ The Telemetry Collector can be optionally configured to collect certificate data
       </ul>
     </td>
   </tr>
-
   <tr>
     <td>Data collection timestamp</td>
     <td>
@@ -313,7 +299,6 @@ The Telemetry Collector can be optionally configured to collect certificate data
       </ul>
     </td>
   </tr>
-
   <tr>
     <td>Foundation ID</td>
     <td>
@@ -322,7 +307,6 @@ The Telemetry Collector can be optionally configured to collect certificate data
       </ul>
     </td>
   </tr>
-
   <tr>
     <td>Collector tool version</td>
     <td>
