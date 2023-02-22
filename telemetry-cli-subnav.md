@@ -1,0 +1,6 @@
+*   [CLI (For Ops Manager v2.7 and earlier)](/docs-telemetry/index.html)
+    *   [Data Security](/docs-telemetry/data.html)
+    *   [Configuration Reference](/docs-telemetry/reference.html)
+    *   [Using as a CLI](/docs-telemetry/using-cli.html)
+    *   [Using with Concourse](/docs-telemetry/using-concourse.html)
+    *   [Release Notes](/docs-telemetry/release-notes.html)
