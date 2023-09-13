@@ -3,31 +3,8 @@ title: Release Notes
 owner: Telemetry
 ---
 
-This page documents the release notes for all releases related to the VMware Tanzu Telemetry Collector v1.2.
+This page documents the release notes for all releases related to the VMware Tanzu Telemetry Collector v1.3.
 
-## <a id='v1.2.0'></a>v1.2.0
+## <a id='v1.3.6'></a>v1.3.6
 
-This release is a major feature improvement of our collection mechanism, resolving the primary reason that telemetry fails to collect: having staged changes on the foundation.
-
-* Allowing Staged Changes
-  * Allows collection when there are staged changes present on the foundation
-  * Collects additional data from the Ops Manager API, returning which products are deployed and which are staged to VMware for more thorough reporting (see Pending Changes endpoint within [What Data is Collected](https://docs.pivotal.io/pivotal-telemetry/1-2/data-collected.html) for more information)
-  * Warns when staged changes are present detailing which changes are staged and how they may affect reporting
-* Update packages and dependencies
-* Minor improvements
-
-## <a id='v1.2.1'></a>v1.2.1
-
-* Added new UsageServiceTimeoutFlag field that sets the timeout on request connection and fulfillment to Usage Service
-
-## <a id='v1.2.2'></a>v1.2.2
-
-* No functional changes
-
-## <a id='v1.2.3'></a>v1.2.3
-
-* No functional changes
-
-## <a id='v1.2.7'></a>v1.2.7
-
-* Bumps dependencies to address CVE-2023-32731, CVE-2022-27191, and CVE-2021-4356.
+This release is a feature improvement of our collection mechanism that permits the collection of only usage and operational data by passing the flag --operational-data-only.
