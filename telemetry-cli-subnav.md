@@ -1,6 +1,6 @@
 # VMware Tanzu Telemetry Collector (CLI)
 
-*   [CLI (For Ops Manager v2.7 and earlier)](/docs-telemetry/index.html)
+*   [CLI (For Operations Manager v2.7 and earlier)](/docs-telemetry/index.html)
     *   [Data Security](/docs-telemetry/data.html)
     *   [Configuration Reference](/docs-telemetry/reference.html)
     *   [Using as a CLI](/docs-telemetry/using-cli.html)
