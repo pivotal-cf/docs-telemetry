@@ -5,16 +5,17 @@ owner: Telemetry
 
 This topic explains how to use the Tanzu Telemetry Collector Command-Line Interface (CLI).
 
-<p class="note"><strong>Note:</strong> VMware recommends installing the Tanzu 
-Telemetry Collector with Concourse. For more information, see 
-<a href="./using-concourse.html"">Using Telemetry Collector for PCF with 
-Concourse</a>.</p>
+<p class="note">
+<span class="note__title">Note</span>
+VMware recommends installing the Tanzu
+Telemetry Collector with Concourse. For more information, see
+<a href="./using-concourse.html">Using Tanzu Telemetry Collector with Concourse</a>.</p>
 
 ## <a id="prerequisite"></a>Prerequisite
 
-To complete the steps in this section, you must have the Tanzu 
-Telemetry Collector CLI binary that corresponds to your operating system. You can 
-download the binary from [Tanzu Network](https://network.pivotal.io/products/pivotal-telemetry-collector/). 
+To complete the steps in this section, you must have the Tanzu
+Telemetry Collector CLI binary that corresponds to your operating system. You can
+download the binary from [Tanzu Network](https://network.pivotal.io/products/pivotal-telemetry-collector/).
 
 ## <a id="install"></a>Install Manually
 
@@ -22,15 +23,15 @@ To install the Tanzu Telemetry Collector manually, complete the following steps:
 
 1.  Add the binary to your `$PATH`.
 1.  Open a terminal window and enter
-    `telemetry-collector` to verify your installation. If your installation 
+    `telemetry-collector` to verify your installation. If your installation
     succeeds, the command returns help commands.
 
 ## <a id="cli"></a>Using Tanzu Telemetry Collector CLI
 
-Once you have installed the CLI, follow the procedure below to collect data from 
-your PCF foundation and send it to VMware. 
+Once you have installed the CLI, follow the procedure below to collect data from
+your PCF foundation and send it to VMware.
 
-### <a id="collect"></a> Collect 
+### <a id="collect"></a> Collect
 
 To collect data from your PCF foundations Ops Manager (and optionally Usage Service), use the following command with information from your foundation: 
 
@@ -41,13 +42,13 @@ To collect data from your PCF foundations Ops Manager (and optionally Usage Serv
   ```
   Where:
   
-  *  `--url` is the Ops Manager URL where the command collects data from. 
+  *  `--url` is the Ops Manager URL where the command collects data from.
   *  `--username` is your Ops Manager username.
   *  `--password` is your Ops Manager password.
   *  `--client-id` needs to be created within the OM UAA for accessing OM API and needs to be a member of `opsman.restricted_view` or higher.
   *  `--client-secret` is the secret associated with the client-id.
-  *  `--env-type` is the type of environment you are using to collect data. You 
-  can enter one the following options: 
+  *  `--env-type` is the type of environment you are using to collect data. You
+  can enter one the following options:
     * `sandbox`         
     * `development`  
     * `qa` 
@@ -60,12 +61,16 @@ To collect data from your PCF foundations Ops Manager (and optionally Usage Serv
   *  `--usage-service-client-secret` is the Usage Service client secret.
   *  `--output-dir` is your local directory where the command writes the output `tar` file.
   
-<p class="note"><strong>Note:</strong> Your Ops Manager username and password are 
-not required if you are using client authentication. For more information 
-on the available flags, see 
+<p class="note">
+<span class="note__title">Note</span>
+Your Operations Manager username and password are
+not required if you are using client authentication. For more information
+on the available flags, see
 <a href ="./reference.html">Configuration Reference</a>.</p>
 
-<p class="note"><strong>Note:</strong> If you want to configure the Telemetry Collector to send Usage Service data, you must include information for all 4 flags related to the Usage Service.</p>
+<p class="note">
+<span class="note__title">Note</span>
+If you want to configure the Telemetry Collector to send Usage Service data, you must include information for all four flags related to the Usage Service.</p>
   
 If the command succeeds, it returns the following message:
   
@@ -73,10 +78,10 @@ If the command succeeds, it returns the following message:
 Wrote output to MY-FILE-PATH/FoundationDetails_#######.tar
 Success!</pre>
 
-After running the command, you can examine the data collected in the 
-`FoundationDetails_######.tar` file. 
+After running the command, you can examine the data collected in the
+`FoundationDetails_######.tar` file.
 
-### <a id="send"></a> Send 
+### <a id="send"></a> Send
 
 To send data to VMware from your PCF foundation, run the following command:
  
@@ -85,11 +90,13 @@ telemetry-collector send --path --api-key
 ```
 Where:
 
-* `--path` is the path to the `FoundationDetails_######.tar` file 
+* `--path` is the path to the `FoundationDetails_######.tar` file
 written by the `collect` command.
 * `--api-key` is the Telemetry API key used to authenticate with VMware.
 
-<p class="note"><strong>Note:</strong> You must send the original, unmodified 
+<p class="note">
+<span class="note__title">Note</span>
+You must send the original, unmodified
 <code>FoundationDetails.tar</code> file for the command to work.</p>
 
 If the command succeeds, it returns the following message:
