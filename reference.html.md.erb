@@ -16,11 +16,13 @@ If you have an HTTP proxy server on your network you must set <code>https_proxy<
 To collect data with Tanzu Telemetry Collector you configure the following 
 parameters:
 
-<table class="nice">
+<table>
+  <thead><tr>
     <th>Flag</th>
     <th>Environment Variable</th>
     <th>Description</th>
-    <tr>
+  </tr></thead>
+  <tbody><tr>
       <td><code>output-dir</code></td>
       <td>
         <code>$OUTPUT_DIR</code>
@@ -37,7 +39,7 @@ parameters:
       </td><td>
         <ul>
           <li>string</li>
-          <li>Ops Manager URL where the command collects data from.</li>
+          <li>Operations Manager URL where the command collects data from.</li>
         </ul>
       </td>
     </tr>
@@ -48,7 +50,7 @@ parameters:
       </td><td>
         <ul>
           <li>string</li>
-          <li>Ops Manager username</li>
+          <li>Operations Manager username</li>
           <li>Not required if you are using client authentication</li>
         </ul>
       </td>
@@ -60,7 +62,7 @@ parameters:
       </td><td>
         <ul>
           <li>string</li>
-          <li>Ops Manager password</li>
+          <li>Operations Manager password</li>
           <li>Not required if you are using client authentication</li>
         </ul>
       </td>
@@ -72,7 +74,7 @@ parameters:
       </td><td>
         <ul>
           <li>string</li>
-          <li>Ops Manager client ID</li>
+          <li>Operations Manager client ID</li>
           <li>Client needs to be a member of the <code>opsman.restricted_view</code> group or higher</li>
           <li>Not required if you are using the <code>username</code> and 
           <code>password</code> parameters for authentication</li>
@@ -86,7 +88,7 @@ parameters:
         </td><td>
           <ul>
             <li>string</li>
-            <li>Ops Manager client secret</li>
+            <li>Operations Manager client secret</li>
             <li>Not required if you are using the <code>username</code> and 
             <code>password</code> for authentication</li>
           </ul>
@@ -128,7 +130,7 @@ parameters:
       <td>(none)</td>
       <td>
         <ul>
-        <li>Skips TLS validation on HTTP requests to Ops Manager</li>
+        <li>Skips TLS validation on HTTP requests to Operations Manager</li>
         </ul>
       </td>
     </tr>    
@@ -140,7 +142,7 @@ parameters:
       <td>
         <ul>
           <li>integer</li>
-          <li>Timeout in seconds for establishing an Ops Manager connection</li>
+          <li>Timeout in seconds for establishing an Operations Manager connection</li>
           <li>Defaults to 30 seconds</li>
           <li>Optional</li>
           </ul></td>
@@ -260,7 +262,7 @@ parameters:
           <li>Requires a file extension e.g. '.yml' or '.json'</li>
         </ul>
       </td>
-    </tr>
+    </tr></tbody>
 </table>
 
 ## <a id="send"></a>Send
@@ -268,12 +270,13 @@ parameters:
 To send data with Tanzu Telemetry Collector you configure the following 
 parameters:
 
-<table class="nice">
-
+<table>
+<thead><tr>
 <th>Flag</th>
 <th>Environment Variable</th>
 <th>Description</th>
-
+</tr></thead>
+<tbody>
 <tr>
 <td><code>path</code></td>
 <td>(none)</td>
@@ -296,5 +299,5 @@ parameters:
     </ul>
   </td>
 </tr>
-
+</tbody>
 </table>
