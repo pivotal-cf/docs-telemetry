@@ -3,17 +3,17 @@ title: Data Security
 owner: Telemetry
 ---
 
-This topic describes how Tanzu Telemetry Collector transmits, stores, and 
+This topic describes how Tanzu Telemetry Collector transmits, stores, and
 secures collected data.
 
 ## <a id="overview"></a>Overview
 
 Tanzu Telemetry Collector collects configuration data
-about your foundation. Tanzu Telemetry Collector 
+about your foundation. Tanzu Telemetry Collector
 does not collect any personal data or
-information related to an identified or identifiable natural person. 
+information related to an identified or identifiable natural person.
 For example, it does not collect data on
-passwords, private keys, or other authentication-type tools. 
+passwords, private keys, or other authentication-type tools.
 
 <p class="note"><strong>Note:</strong> Tanzu Telemetry Collector
 collects configuration data for all services installed on a
@@ -21,12 +21,12 @@ foundation. This may include partner tile data.</p>
 
 ## <a id="security"></a>Security Measures
 
-Tanzu Telemetry Collector connects to Ops Manager and optionally the <a href="https://docs.pivotal.io/application-service/2-10/operating/accounting-report.html">Usage Service</a> on any VMware Tanzu Cloud Foundry
-(PCF) foundation that has provided valid credentials. After Tanzu Telemetry 
-Collector collects data, this data may be transmitted to VMware. The data is stored 
+Tanzu Telemetry Collector connects to Ops Manager and optionally the <a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Service/5.0/tas-for-vms/accounting-report.html">Reporting app, task, and service instance usage</a> on any VMware Tanzu Cloud Foundry
+(PCF) foundation that has provided valid credentials. After Tanzu Telemetry
+Collector collects data, this data may be transmitted to VMware. The data is stored
 securely in Google Cloud Platform (GCP).
 
-Tanzu Telemetry Collector secures data during transmission using the following 
+Tanzu Telemetry Collector secures data during transmission using the following
 measures:
 
   - HTTPS connections when communicating
@@ -34,8 +34,8 @@ measures:
 
 ## <a id="collected"></a>Data Collected
 
-Tanzu Telemetry Collector collects data in a `FoundationDetails_######.tar` 
-file on your local filesystem. The `FoundationDetails_######.tar` contains the 
+Tanzu Telemetry Collector collects data in a `FoundationDetails_######.tar`
+file on your local filesystem. The `FoundationDetails_######.tar` contains the
 following data:
 
 ### From Ops Manager
@@ -211,7 +211,7 @@ The Telemetry Collector can be optionally configured to collect information abou
               <li>App instance hours</li>
               <li>Average app instances</li>
               <li>Maximum app instances</li>
-              <li><a href="https://docs.pivotal.io/application-service/2-10/operating/accounting-report.html#app-usage">
+              <li><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Service/5.0/tas-for-vms/accounting-report.html#app-usage">
                Documentation</a>
            </ul>
           </li>
@@ -227,7 +227,7 @@ The Telemetry Collector can be optionally configured to collect information abou
                <li>Total task runs</li>
                <li>Maximum concurrent tasks</li>
                <li>Task hours</li>
-               <li><a href="https://docs.pivotal.io/application-service/2-10/operating/accounting-report.html#task-usage">
+               <li><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Service/5.0/tas-for-vms/accounting-report.html#task-usage">
                Documentation</a>
             </ul>
          </li>
@@ -254,7 +254,7 @@ The Telemetry Collector can be optionally configured to collect information abou
                     <li>Service plan name is filtered out</li>
                   </ul>
                </li>
-               <li><a href="https://docs.pivotal.io/application-service/2-10/operating/accounting-report.html#service-usage">
+               <li><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Service/5.0/tas-for-vms/accounting-report.html#service-usage">
                Documentation</a>
              </ul>
            </li>
