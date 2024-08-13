@@ -33,13 +33,30 @@ your PCF foundation and send it to VMware.
 
 ### <a id="collect"></a> Collect
 
-To collect data from your TAS for VMs foundations Operations Manager (and optionally Usage Service), use the following command with information from your foundation:
+To collect data from your TAS for VMs foundations Operations Manager (and optionally Usage Service), use one of the following commands with information from your foundation:
 
+#### <a id="collect-all"></a> Collect All Data (Recommended)
   ```
   telemetry-collector collect --url --username --password [or --client-id and
   --client-secret] --usage-service-url --usage-service-client-id
   --usage-service-client-secret --cf-api-url --env-type --output-dir --foundation-nickname
   ```
+
+#### <a id="collect-only-usage"></a> Collect Only Operational Data
+  ```
+  telemetry-collector collect --url --username --password [or --client-id and
+  --client-secret] --usage-service-url --usage-service-client-id
+  --usage-service-client-secret --cf-api-url --env-type --output-dir --foundation-nickname
+  --operational-data-only
+  ```
+
+#### <a id="collect-only-configuration"></a> Collect Only Configuration Data
+  ```
+  telemetry-collector collect --url --username --password [or --client-id and
+  --client-secret] --env-type --output-dir --foundation-nickname
+  ```
+
+
   Where:
   
   *  `--url` is the Operations Manager URL where the command collects data from.
@@ -60,6 +77,7 @@ To collect data from your TAS for VMs foundations Operations Manager (and option
   *  `--usage-service-client-id` is the Usage Service client id. Note that this client needs to exist in the PAS UAA and to be a member of either the `cloud_controller.admin` or `usage_service.audit` group.
   *  `--usage-service-client-secret` is the Usage Service client secret.
   *  `--output-dir` is your local directory where the command writes the output `tar` file.
+  *  `--operational-data-only` is an optional flag that, when set, only collects Operational Data (ie. Usage Service and Core Consumption data)
   
 <p class="note">
 <span class="note__title">Note</span>
